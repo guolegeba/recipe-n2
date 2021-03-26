@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/type/type",
+    "pages/list/list",
+    "pages/search/search",
+    "pages/my/my",
+    "pages/pbrecipe/pbrecipe",
+    "pages/category/category"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ea932a",
+    "navigationBarTitleText": "饭点一刻",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar":{
+    "selectedColor": "#F5922F",
+    "list":[
+      {
+        "text":"首页",
+        "pagePath":"pages/index/index",
+        "iconPath": "static/my/face.png",
+        "selectedIconPath": "./static/my/faceFull.png"
+      },
+      {
+        "text":"搜索",
+        "pagePath":"pages/search/search",
+        "iconPath": "static/my/search.png",
+        "selectedIconPath": "./static/my/searchFull.png"
+      },
+      {
+        "text":"我的",
+        "pagePath":"pages/my/my",
+        "iconPath": "static/my/my.png",
+        "selectedIconPath": "./static/my/myFull.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "useExtendedLib": {
+    "weui":true
+  },
+  "usingComponents": {
+    "mp-badge": "/miniprogram_npm/weui-miniprogram/badge/badge",
+    "my-searchbar": "/miniprogram_npm/weui-miniprogram/searchbar/searchbar",
+    "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
+    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
+    "mp-slideview": "/miniprogram_npm/weui-miniprogram/slideview/slideview",
+    "mp-uploader": "/miniprogram_npm/weui-miniprogram/uploader/uploader"
+  }
+   
+}

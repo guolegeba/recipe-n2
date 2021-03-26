@@ -1,0 +1,60 @@
+<view>
+  <!-- swiper轮播图 -->
+  <swiper class="swiper" indicator-dots="{{ true }}" indicator-color="#fff" indicator-active-color="#eb9834">
+    <block wx:for="{{ detailData.filesIDList }}">
+      <swiper-item>
+        <image src="{{ item }}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 名称 -->
+  <view class="info">
+    <view class="info-top">
+      <text space="nbsp">l {{detailData.repName}}</text>
+    </view>
+    <view class="info-bottom">
+      <view class="left">
+        <image src="{{detailData.userInfo.avatarUrl}}"></image>
+        <text space="nbsp">  {{detailData.userInfo.nickName}}</text>
+      </view>
+      <view class="center">
+        <image src="../../imgs/airs.png"></image>
+        <text>{{detailData.visiter}}</text>
+      </view>
+      <view class="right">
+        <image src="../../static/detail/followed.png"></image>
+        <text>{{detailData.follow}}</text>
+      </view>
+    </view>
+  </view>
+  <view style="width:100%;height:30rpx;background-color:#f9f9f9"></view>
+  <!-- 做法显示 -->
+  <view class="makes">
+    <view class="makes-title">
+      做法
+    </view>
+    <view class="makes-content">
+      {{detailData.repMake}}
+    </view>
+  </view>
+
+  <!-- 底部显示 -->
+  <view class="bottom-set">
+    <view class="set-follow"  bindtap="follow">
+      <!-- 已收藏 -->
+      <view wx:if="{{ isFollow }}">
+        <image src="../../static/detail/followed.png"></image>
+        <text style="color: #ea932a;">已收藏</text>
+      </view>
+
+      <!-- 未收藏 -->
+      <view wx:else>
+        <image src="../../static/detail/follow.png"></image>
+        <text>收藏</text>
+      </view>
+    </view>
+    <view class="set-concat">
+      <button open-type="share">分享</button>
+    </view>
+  </view>
+</view>

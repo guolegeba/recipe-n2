@@ -1,0 +1,36 @@
+<!-- 引入模板 -->
+<import src="../../common/templateList.wxml" />
+
+<view>
+  <block wx:for="{{ repList }}">
+    <view class="list" bindtap="toDetail"
+      data-_id="{{item._id}}">
+       <image src="{{ item.filesIDList[0]}}" class="recipe-image"></image>
+       <!-- 基本信息 -->
+       <view class="list-info">
+          <view class="list-name">{{ item.repName}}</view>
+          <view class="list-info-userinfo">
+            <image src="{{ item.userInfo.avatarUrl }}"></image>
+            <text>{{ item.userInfo.nickName }}</text>
+          </view>
+          <view class="xing">
+            <!-- 星星 -->
+            <template is="start" data="{{item}}"></template>
+            <!-- <image src="../../static/list/xing3.png"></image> -->
+          </view>
+          <view class="number">
+            <view>  
+              <image src="../../static/list/followed.png"></image>
+              <text>{{ item.follow }}</text>
+            </view>
+            <view>
+              <image src="../../static/list/airs.png"></image>
+              <text>{{ item.visiter }}</text> 
+            </view>
+          </view>
+       </view>
+    </view>
+  </block>
+  <!-- 底线提示 -->
+  <template is="tip" data="{{isLoad,isHaveData}}"></template>
+</view>

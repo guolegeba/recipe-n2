@@ -1,0 +1,51 @@
+<view>
+  <!-- 搜索栏 -->
+  <view class="search">
+    <view class="search-box">
+      <input type="text"
+          placeholder="请输入菜谱名称"
+          placeholder-class="p-box"
+          model:value = "{{searchWord}}"
+      />
+      <icon type="search"
+        color="#fff"
+        size="30"
+        bindtap="search"
+      ></icon>
+    </view>
+  </view>
+
+  <!-- 热门搜索  -->
+  <view class="hot-search">
+    <view class="hot-search-title">
+      热门搜索
+    </view>
+    <view class="hot-search-list">
+      <view wx:for="{{ hotRep }}" wx:key="_id"
+        bindtap="search"
+        data-name="{{item.repName}}"
+      >
+         {{item.repName}}
+      </view>
+    </view>
+  </view>
+  <!-- 近期搜索  -->
+  <view class="hot-search">
+    <view class="hot-search-title">
+      近期搜索
+    </view>
+    <view class="hot-search-list">
+      <view wx:for="{{ hisRep }}" wx:key="index"
+        bindtap="search"
+        data-name="{{item}}"
+      >
+         {{item}}
+      </view>
+    </view>
+    <view class="downtip" hidden="{{isHaveHis}}">
+      -- 暂无记录 --
+    </view>
+    <button class="btn-cls" hidden="{{!isHaveHis}}" bindtap="clearStorage">清除记录</button>
+
+  </view>
+</view>

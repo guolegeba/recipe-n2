@@ -1,0 +1,33 @@
+<!-- 定义星星模板 -->
+<template name="start" >
+    <block wx:if="{{item.follow == 0}}">
+        <image src="../../static/list/xing0.png"></image>
+    </block>
+    <block wx:elif="{{item.follow >= 1  && item.follow <=5}}">
+        <image src="../../static/list/xing1.png"></image>
+    </block>
+    <block wx:elif="{{item.follow >= 6  && item.follow <=10}}">
+        <image src="../../static/list/xing2.png"></image>
+    </block>
+    <block wx:elif="{{item.follow >= 11  && item.follow <=20}}">
+        <image src="../../static/list/xing3.png"></image>
+    </block>
+    <block wx:elif="{{item.follow >= 21  && item.follow <=50}}">
+        <image src="../../static/list/xing4.png"></image>
+    </block>
+    <block wx:elif="{{item.follow >= 51}}">
+        <image src="../../static/list/xing5.png"></image>
+    </block>
+</template>
+
+
+<!-- 数据提示 -->
+<template name="tip">
+    <view class="downtip" hidden="{{isLoad}}">
+      <view>--- 亲，下面没有数据了! ---</view>
+  </view>
+  <view class="downtip" hidden="{{isHaveData}}">
+    <image src="../../static/my/img01.jpg"></image>
+    <view>--- 亲，还没有相关数据哟! ---</view> 
+  </view>
+</template>

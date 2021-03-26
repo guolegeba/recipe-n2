@@ -1,0 +1,138 @@
+<!-- 引入模板 -->
+<import src="../../common/templateList.wxml" />
+
+<view>
+  <!-- 顶部用户信息 -->
+  <view class="header">
+
+     <!-- 登录页面 -->
+     <view class="login" wx:if="{{isLogin}}">
+      <image
+        src="{{userInfo.avatarUrl}}"
+        bindtap="goToCate"
+      ></image>
+      <view class="name">
+        {{userInfo.nickName}}
+      </view>
+    </view>
+    <!-- 未登录页面 -->
+    <view class="no-login" wx:else>
+      <image src="../../static/my/logo1.jpg"></image>
+      <button size="mini"
+        plain
+        open-type="getUserInfo"
+        bindgetuserinfo="wxlogin"
+      >登录</button>
+    </view>
+   
+  </view>
+
+  <!-- 导航栏 -->
+  <view class="menu">
+    <view class="{{chgIdx == 0 ? 'active' : ''}}" bindtap="chgMenu" data-idx="0">我的菜单</view>
+    <view class="{{chgIdx == 1 ? 'active' : ''}}" bindtap="chgMenu" data-idx="1">我的收藏</view>
+  </view>
+
+  <!-- 内容显示 -->
+  <!-- 未登录时 -->
+  <view class="body-nologin" wx:if="{{ !isLogin }}">
+    <view class="content-body-nologin">
+      <image src="../../static/my/nologin.jpg"></image>
+      <view>可以先去登录哦</view>
+    </view>
+  </view>
+  <!-- 登录之后 -->
+  <view wx:else>
+    <!-- 菜单列表 -->
+    <view style="display:{{chgIdx == 0 ? '' : 'none'}}">
+      <!-- 菜单列表 -->
+      <view>
+        <!-- 没有东西 -->
+        <view wx:if="{{ !true }}" class="no-pbmenu">
+          <image src="../../static/my/img01.jpg"></image>
+          <view>您还没发布过食谱哦</view>
+        </view>
+        <!-- 有东西 -->
+        <view 
+          class="hot-recipe-list"
+          wx:else
+        >
+          <block wx:for="{{ myRepList }}">
+            <view class="hot-recipe-list-item"
+              bindlongpress="_delStyle"
+              bindtap="toDetail"
+              data-_id="{{item._id}}"
+            >
+              <!-- 图片 -->
+              <image src="{{ item.filesIDList[0] }}"></image>
+              <!-- 名字 -->
+              <view class="hot-recipe-list-item-title">{{ item.repName }}</view>
+              <!-- 发布人及浏览次数 -->
+              <view class="hot-recipe-list-item-info">
+                <view class="left">
+                  <image src="{{item.userInfo.avatarUrl}}"></image>
+                  <text>{{item.userInfo.nickName}}</text>
+                </view>
+                <view class="right">
+                  <image src="../../imgs/airs.png"></image>
+                  <text>{{item.visiter}}</text>
+                </view>
+              </view>
+            </view>
+
+          </block>
+        </view>
+      </view>
+      <!-- 加号 -->
+      <view class="jia">
+        <image src="../../static/my/jia.png" bindtap="toPbrecipe"></image>
+      </view>
+      <!-- 底线提示 -->
+      <template is="tip" data="{{isLoad,isHaveData}}"></template>
+    </view>
+   
+    <!-- 收藏列表 -->
+    <view style="display:{{chgIdx == 1 ? '' : 'none'}}">
+      <!-- 没有收藏 -->
+      <view class="no-follow" wx:if="{{ lists.length <=0 }}">
+        <image src="../../static/my/nofollow.jpg"></image>
+        <view>您还没收藏过食谱哦</view>
+      </view>
+      <!-- 收藏菜单 -->
+      <view wx:else>
+        <block wx:for="{{ myFollowList }}">
+          <view class="list" bindtap="toDetail" data-_id="{{item.followList[0]._id}}">
+            <image src="{{ item.followList[0].filesIDList[0]}}" class="recipe-image"></image>
+            <!-- 基本信息 -->
+            <view class="list-info">
+              <view class="list-name">{{ item.followList[0].repName }}</view>
+              <view class="list-info-userinfo">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <text>{{ item.userInfo.nickName }}</text>
+              </view>
+              <view class="xing">
+                <!-- 星星 -->
+                <template is="start" data="{{item}}"></template>
+              </view>
+              <view class="number">
+                <view>
+                  <image src="../../static/list/followed.png"></image>
+                  <text>{{ item.followList[0].follow }}</text>
+                </view>
+                <view>
+                  <image src="../../static/list/airs.png"></image>
+                  <text>{{ item.followList[0].visiter  }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <!-- 底线提示 -->
+        <template is="tip" data="{{isLoad,isHaveData}}"></template>
+      </view>
+    </view>
+
+  </view>
+
+
+</view>

@@ -1,0 +1,12 @@
+.downtip{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 50rpx 0;
+  color: rgb(233, 138, 13);
+}
+.downtip image{
+  width: 160rpx;
+  height: 150rpx;
+}

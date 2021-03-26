@@ -1,0 +1,23 @@
+<!-- 引入模板 -->
+<import src="../../common/templateList.wxml" />
+
+<view>
+  <!-- 顶部图片 -->
+  <view class="type-img">
+    <image src="../../static/type/banner.jpg"></image>
+  </view>
+
+  <!-- 分类列表 -->
+  <view class="type-list">
+    <block wx:for="{{ typeList }}">
+      <view class="list-item"
+        bindtap="toList"
+        data-item="{{item}}"
+      >
+        <image src="../../static/type/type02.jpg"></image>
+        <text>{{ item.typename }}</text>
+      </view>
+    </block>
+  </view>
+  <template is="tip" data="{{isLoad,isHaveData}}"></template>
+</view>
